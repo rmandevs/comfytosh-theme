@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#282e2b">
 <meta property="og:title" content="Comfytosh Theme">
 <meta property="og:description" content="A cozy colour theme from beige machines and old terminals. do more, get comfy.">
-<meta property="og:image" content="assets/wallpapers/wallpaper-desktop.webp">
+<meta property="og:image" content="https://rmandevs.github.io/comfytosh/assets/wallpapers/wallpaper-desktop.webp">
 <link rel="apple-touch-icon" href="assets/mark.svg">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <script>
@@ -32,10 +32,11 @@
 <a class="skip" href="#ports">Skip to the ports</a>
 
 <header class="bar">
-  <a class="brand" href="#top"><img src="assets/mark.svg" width="25" height="30" alt="">comfytosh</a>
+  <a class="brand" href="#top"><img src="assets/mark.svg" width="25" height="30" alt=""><span>comfytosh</span></a>
   <nav class="bar__links" aria-label="Sections">
-    <a href="#ports">Ports</a><a href="#palette">Palette</a><a href="{{repo}}">GitHub</a>
+    <a class="bar__opt" href="#preview">Preview</a><a href="#ports">Ports</a><a href="#palette">Palette</a><a href="{{repo}}">GitHub</a>
   </nav>
+  <button class="key key--sm bar__flavor" type="button" data-flavor-toggle hidden><span class="key__face"><span class="sr-only">Switch to the </span><span data-flavor-other>Case</span><span class="sr-only"> flavor</span></span></button>
 </header>
 
 <main>
@@ -82,6 +83,39 @@
   </svg>
 </section>
 
+<section class="section" id="preview" aria-labelledby="preview-title">
+  <div class="head">
+    <h2 id="preview-title">Preview</h2>
+    <p class="count">drawn with the theme's own roles</p>
+  </div>
+  <div class="preview">
+    <div class="win win--editor">
+      <div class="win__bar" role="tablist" aria-label="Sample files"><button class="win__tab" type="button" role="tab" id="pv-tab-0" aria-controls="pv-panel-0" aria-selected="true">mug.ts</button><button class="win__tab" type="button" role="tab" id="pv-tab-1" aria-controls="pv-panel-1" aria-selected="false" tabindex="-1">nap.py</button><button class="win__tab" type="button" role="tab" id="pv-tab-2" aria-controls="pv-panel-2" aria-selected="false" tabindex="-1">index.html</button></div>
+<pre class="code" id="pv-panel-0" role="tabpanel" aria-labelledby="pv-tab-0" tabindex="0"><code><span class="ln"><i class="m">// do more, get comfy</i></span><span class="ln"><i class="k">import</i> <i class="o">{</i> Kettle <i class="o">}</i> <i class="k">from</i> <i class="s">"./kitchen"</i><i class="o">;</i></span><span class="ln"> </span><span class="ln"><i class="k">type</i> <i class="t">Tea</i> <i class="o">=</i> <i class="s">"sencha"</i> <i class="o">|</i> <i class="s">"oolong"</i> <i class="o">|</i> <i class="s">"chai"</i><i class="o">;</i></span><span class="ln"> </span><span class="ln"><i class="k">export class</i> <i class="t">Mug</i> <i class="o">{</i></span><span class="ln">  <i class="k">private</i> <i class="p">level</i> <i class="o">=</i> <i class="n">0</i><i class="o">;</i></span><span class="ln">  <i class="k">constructor</i><i class="o">(</i><i class="k">readonly</i> <i class="p">tea</i><i class="o">:</i> <i class="t">Tea</i><i class="o">,</i> <i class="k">readonly</i> <i class="p">ml</i> <i class="o">=</i> <i class="n">350</i><i class="o">) {}</i></span><span class="ln"> </span><span class="ln">  <i class="k">async</i> <i class="f">brew</i><i class="o">(</i>kettle<i class="o">:</i> <i class="t">Kettle</i><i class="o">):</i> <i class="t">Promise</i><i class="o">&lt;</i><i class="t">number</i><i class="o">&gt; {</i></span><span class="ln">    <i class="k">const</i> water <i class="o">=</i> <i class="k">await</i> kettle<i class="o">.</i><i class="f">boil</i><i class="o">(</i><i class="k">this</i><i class="o">.</i><i class="p">ml</i><i class="o">);</i></span><span class="ln">    <i class="k">if</i> <i class="o">(!</i>water<i class="o">.</i><i class="p">hot</i><i class="o">)</i> <i class="k">return</i> <i class="c">null</i><i class="o">;</i></span><span class="ln"><b class="hl">    <i class="k">this</i><i class="o">.</i><i class="p">level</i> <i class="o">=</i> water<i class="o">.</i><i class="p">ml</i><i class="o">;</i></b></span><span class="ln">    <i class="k">return</i> <i class="k">this</i><i class="o">.</i><i class="p">level</i><i class="o">;</i></span><span class="ln">  <i class="o">}</i></span><span class="ln"><i class="o">}</i></span></code></pre>
+<pre class="code" id="pv-panel-1" role="tabpanel" aria-labelledby="pv-tab-1" tabindex="0" hidden><code><span class="ln"><i class="m"># a nap is a feature, not a bug</i></span><span class="ln"><i class="k">from</i> dataclasses <i class="k">import</i> dataclass</span><span class="ln"> </span><span class="ln"><i class="c">RAIN</i> <i class="o">=</i> <i class="c">True</i></span><span class="ln"> </span><span class="ln"><i class="f">@dataclass</i></span><span class="ln"><i class="k">class</i> <i class="t">Nap</i><i class="o">:</i></span><span class="ln">    <i class="p">minutes</i><i class="o">:</i> <i class="t">int</i> <i class="o">=</i> <i class="n">25</i></span><span class="ln">    <i class="p">blanket</i><i class="o">:</i> <i class="t">str</i> <i class="o">=</i> <i class="s">"wool"</i></span><span class="ln"> </span><span class="ln">    <i class="k">def</i> <i class="f">worth_it</i><i class="o">(</i><i class="k">self</i><i class="o">,</i> tired<i class="o">:</i> <i class="t">float</i><i class="o">) -&gt;</i> <i class="t">bool</i><i class="o">:</i></span><span class="ln"><b class="hl">        <i class="k">if</i> <i class="c">RAIN</i> <i class="k">or</i> tired <i class="o">&gt;</i> <i class="n">0.6</i><i class="o">:</i></b></span><span class="ln">            <i class="k">return</i> <i class="c">True</i></span><span class="ln">        <i class="k">return</i> <i class="k">self</i><i class="o">.</i><i class="p">minutes</i> <i class="o">&lt;</i> <i class="n">30</i></span></code></pre>
+<pre class="code" id="pv-panel-2" role="tabpanel" aria-labelledby="pv-tab-2" tabindex="0" hidden><code><span class="ln"><i class="m">&lt;!-- the desk, in markup --&gt;</i></span><span class="ln"><i class="o">&lt;</i><i class="g">main</i> <i class="p">class</i><i class="o">=</i><i class="s">"desk"</i><i class="o">&gt;</i></span><span class="ln">  <i class="o">&lt;</i><i class="g">h1</i> <i class="p">id</i><i class="o">=</i><i class="s">"hello"</i><i class="o">&gt;</i>Get comfy<i class="o">&lt;/</i><i class="g">h1</i><i class="o">&gt;</i></span><span class="ln"><b class="hl">  <i class="o">&lt;</i><i class="g">p</i><i class="o">&gt;</i>A cozy theme for <i class="o">&lt;</i><i class="g">em</i><i class="o">&gt;</i>long<i class="o">&lt;/</i><i class="g">em</i><i class="o">&gt;</i> days.<i class="o">&lt;/</i><i class="g">p</i><i class="o">&gt;</i></b></span><span class="ln">  <i class="o">&lt;</i><i class="g">img</i> <i class="p">src</i><i class="o">=</i><i class="s">"mug.svg"</i> <i class="p">alt</i><i class="o">=</i><i class="s">"A warm mug"</i> <i class="p">width</i><i class="o">=</i><i class="s">"64"</i><i class="o">&gt;</i></span><span class="ln">  <i class="o">&lt;</i><i class="g">button</i> <i class="p">type</i><i class="o">=</i><i class="s">"button"</i> <i class="p">disabled</i><i class="o">&gt;</i>Nap<i class="o">&lt;/</i><i class="g">button</i><i class="o">&gt;</i></span><span class="ln"><i class="o">&lt;/</i><i class="g">main</i><i class="o">&gt;</i></span></code></pre>
+      <div class="win__status"><span>NORMAL</span><span>main</span><span class="win__status-end">utf-8</span></div>
+    </div>
+    <div class="win win--term">
+      <div class="win__bar"><span class="win__title">zsh</span></div>
+      <pre class="term" tabindex="0" aria-label="A terminal session in the theme's colours"><code><i class="a-cyan">~/comfytosh</i> <i class="a-magenta">main</i> <i class="a-green">$</i> ls
+<i class="a-blue">alacritty/</i>  <i class="a-blue">ghostty/</i>  <i class="a-blue">nvim/</i>  palette.json  <i class="a-green">build.sh*</i>
+<i class="a-cyan">~/comfytosh</i> <i class="a-magenta">main</i> <i class="a-green">$</i> git status -sb
+<i class="a-dim">## main...origin/main</i>
+ <i class="a-yellow">M</i> palette.json
+<i class="a-green">A</i>  zed/comfytosh.json
+<i class="a-red">D</i>  old-theme.toml
+<i class="a-dim">??</i> notes.md
+<i class="a-cyan">~/comfytosh</i> <i class="a-magenta">main</i> <i class="a-green">$</i> git diff palette.json
+<b class="d-rm">-  "cursor": "#ffffff",</b>
+<b class="d-add">+  "cursor": "#c5f899",</b>
+<i class="a-cyan">~/comfytosh</i> <i class="a-magenta">main</i> <i class="a-green">$</i> <i class="cur"></i></code></pre>
+      <div class="ansi" aria-hidden="true"><i style="background:var(--th-ansi-black)" title="black"></i><i style="background:var(--th-ansi-red)" title="red"></i><i style="background:var(--th-ansi-green)" title="green"></i><i style="background:var(--th-ansi-yellow)" title="yellow"></i><i style="background:var(--th-ansi-blue)" title="blue"></i><i style="background:var(--th-ansi-magenta)" title="magenta"></i><i style="background:var(--th-ansi-cyan)" title="cyan"></i><i style="background:var(--th-ansi-white)" title="white"></i><i style="background:var(--th-ansi-bright-black)" title="bright-black"></i><i style="background:var(--th-ansi-bright-red)" title="bright-red"></i><i style="background:var(--th-ansi-bright-green)" title="bright-green"></i><i style="background:var(--th-ansi-bright-yellow)" title="bright-yellow"></i><i style="background:var(--th-ansi-bright-blue)" title="bright-blue"></i><i style="background:var(--th-ansi-bright-magenta)" title="bright-magenta"></i><i style="background:var(--th-ansi-bright-cyan)" title="bright-cyan"></i><i style="background:var(--th-ansi-bright-white)" title="bright-white"></i></div>
+    </div>
+  </div>
+  <p class="note">Flip between <strong>Screen</strong> and <strong>Case</strong> with the key in the bar. Everything on this page follows.</p>
+</section>
+
 <section class="section" id="ports" aria-labelledby="ports-title">
   <div class="head">
     <h2 id="ports-title">Ports</h2>
@@ -119,6 +153,28 @@
     </div>
   </div>
   <p class="note">Click a value to copy it. Ports map these colours through the roles in <a href="palette.json">palette.json</a>.</p>
+</section>
+
+<section class="section" id="roles" aria-labelledby="roles-title">
+  <div class="head">
+    <h2 id="roles-title">Roles</h2>
+    <p class="count">Screen · Case</p>
+  </div>
+  <p class="note note--lead">Ports never pick a colour by name. They ask for a role, and each flavor answers. Click a role to copy its colour in the flavor you are looking at.</p>
+<!-- @roles -->
+</section>
+
+<section class="section" id="wallpapers" aria-labelledby="wallpapers-title">
+  <div class="head">
+    <h2 id="wallpapers-title">Wallpapers</h2>
+    <p class="count">4K PNG</p>
+  </div>
+  <div class="walls">
+    <a class="wall wall--wide" href="{{repo}}/raw/{{branch}}/wallpapers/wallpaper-desktop-4k.png"><img src="assets/wallpapers/wallpaper-desktop.webp" width="2400" height="1350" loading="lazy" alt="Keycaps that spell do more, get comfy on a green cutting mat"><span>Keycaps <small>3840×2160</small></span></a>
+    <a class="wall wall--wide" href="{{repo}}/raw/{{branch}}/wallpapers/cutmat-desktop-4k.png"><img src="assets/wallpapers/cutmat-desktop.webp" width="2400" height="1350" loading="lazy" alt="A green cutting mat with its grid and rulers"><span>Cutting mat <small>3840×2160</small></span></a>
+    <a class="wall wall--tall" href="{{repo}}/raw/{{branch}}/wallpapers/wallpaper-mobile-4k.png"><img src="assets/wallpapers/wallpaper-mobile.webp" width="1080" height="1920" loading="lazy" alt="The keycaps wallpaper for phones"><span>Keycaps <small>phone</small></span></a>
+    <a class="wall wall--tall" href="{{repo}}/raw/{{branch}}/wallpapers/cutmat-mobile-4k.png"><img src="assets/wallpapers/cutmat-mobile.webp" width="1080" height="1920" loading="lazy" alt="The cutting mat wallpaper for phones"><span>Cutting mat <small>phone</small></span></a>
+  </div>
 </section>
 
 </main>
