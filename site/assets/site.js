@@ -26,8 +26,13 @@
     flavorKeys.forEach(function (k) { k.setAttribute('aria-pressed', String(k.getAttribute('data-flavor-set') === f)); });
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', f === 'case' ? '#e3dac9' : '#282e2b');
+    document.querySelectorAll('[data-flavor-other]').forEach(function (el) { el.textContent = f === 'case' ? 'Screen' : 'Case'; });
     if (save) { try { localStorage.setItem('comfytosh-flavor', f); } catch (e) {} }
   }
+  document.querySelectorAll('[data-flavor-toggle]').forEach(function (k) {
+    k.hidden = false;
+    k.addEventListener('click', function () { setFlavor(root.getAttribute('data-flavor') === 'case' ? 'screen' : 'case', true); });
+  });
   flavorKeys.forEach(function (k) { k.addEventListener('click', function () { setFlavor(k.getAttribute('data-flavor-set'), true); }); });
   setFlavor(root.getAttribute('data-flavor') === 'case' ? 'case' : 'screen', false);
 
@@ -38,6 +43,32 @@
       copy(v).then(function () { toast('Copied ' + v); }, function () { toast('Could not copy ' + v); });
     });
   });
+  document.querySelectorAll('[data-role-screen]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var v = btn.getAttribute(root.getAttribute('data-flavor') === 'case' ? 'data-role-case' : 'data-role-screen');
+      copy(v).then(function () { toast('Copied ' + v); }, function () { toast('Could not copy ' + v); });
+    });
+  });
+
+  /* ── Preview: the sample files are tabs (arrow keys move between them) ── */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.win__tab'));
+  function selectTab(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab, panel = document.getElementById(t.getAttribute('aria-controls'));
+      t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
+      if (panel) panel.hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { selectTab(t, false); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault(); selectTab(tabs[(i + d + tabs.length) % tabs.length], true);
+    });
+  });
+
   document.querySelectorAll('[data-copy-format="css"]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       fetch('palette.json').then(function (r) { return r.json(); }).then(function (p) {

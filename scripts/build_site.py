@@ -194,6 +194,34 @@ def render_ports(registry):
     return "\n".join(tiles)
 
 
+ROLE_GROUPS = [
+    ("Grounds", ("bg", "border")),
+    ("Text and accent", ("ink", "accent", "on-accent", "focus", "cursor", "selection", "line-highlight", "match")),
+    ("States", ("success", "warning", "danger", "info", "hint", "diff")),
+    ("Syntax", ("syntax",)),
+    ("Terminal", ("terminal", "ansi")),
+]
+
+
+def render_roles(palette):
+    """Every role, with the colour each flavor gives it."""
+    screen = palette["flavors"]["screen"]["roles"]
+    case = palette["flavors"]["case"]["roles"]
+    seen, out = set(), []
+    for title, prefixes in ROLE_GROUPS:
+        names = [n for n in screen if n not in seen and any(n == p or n.startswith(p + "-") for p in prefixes)]
+        if not names:
+            continue
+        seen.update(names)
+        chips = "".join(
+            '<button class="role" type="button" data-role-screen="{s}" data-role-case="{c}">'
+            '<span class="role__sw" aria-hidden="true"><i style="--c:{s}"></i><i style="--c:{c}"></i></span>'
+            '<span class="role__name">{n}</span></button>'.format(n=esc(n), s=esc(screen[n]), c=esc(case.get(n, screen[n])))
+            for n in names)
+        out.append('<h3 class="roles__title">{t}</h3>\n<div class="roles">{chips}</div>'.format(t=esc(title), chips=chips))
+    return "\n".join(out)
+
+
 # ── build ──
 
 def build(out):
@@ -223,6 +251,7 @@ def build(out):
         "<!-- @palette -->": render_palette(palette),
         "<!-- @filters -->": render_filters(registry),
         "<!-- @ports -->": render_ports(registry),
+        "<!-- @roles -->": render_roles(palette),
         "{{port_count}}": str(len(registry["ports"])),
         "{{repo}}": REPO,
         "{{branch}}": BRANCH,
